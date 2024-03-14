@@ -23,7 +23,7 @@ app.use(express.json());
 app.use(morgan("dev"));
 app.use(
   cors({
-    origin: ["https://mern-stack-ecommerce-project.vercel.app/"],
+    origin: ["https://mern-stack-ecommerce-project.vercel.app"],
     methods: ["POST", "GET"],
     credentials: true,
   })
