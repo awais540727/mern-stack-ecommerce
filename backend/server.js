@@ -21,7 +21,14 @@ const app = express();
 // Middleware
 app.use(express.json());
 app.use(morgan("dev"));
-app.use(cors());
+app.use(
+  cors({
+    origin: ["https://mern-stack-ecommerce-project.vercel.app/"],
+    methods: ["POST", "GET"],
+    credentials: true,
+  })
+);
+
 // Serve static files from the build directory
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 app.use(express.static(path.join(__dirname, "ecom/build")));
