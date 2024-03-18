@@ -25,10 +25,10 @@ import AllCategories from "./pages/category/AllCategories";
 import CategoryProduct from "./pages/category/CategoryProduct";
 import CartPage from "./pages/cart/CartPage";
 import AdminOrders from "./pages/admin/AdminOrders";
-import axios from "axios";
+
 
 function App() {
-  axios.defaults.withCredentials = true;
+
   return (
     <>
       <Routes>
