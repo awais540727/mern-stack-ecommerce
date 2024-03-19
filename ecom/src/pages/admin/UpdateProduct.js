@@ -233,7 +233,7 @@ const UpdateProduct = () => {
               </div>
             </form>
             <div className="flex-end">
-              <button className="btn btn-danger" onClick={() => handleDelete}>
+              <button className="btn btn-danger" onClick={handleDelete}>
                 Delete Product
               </button>
             </div>
