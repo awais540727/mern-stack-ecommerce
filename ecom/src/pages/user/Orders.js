@@ -44,12 +44,12 @@ const Orders = () => {
             </h2>
             {!loading ? (
               orders?.map((order, i) => (
-                <div key={order._id}>
-                  <table className="table shadow">
-                    <thead>
+                <>
+                  <table className="table shadow w-80">
+                    <thead key={order._id}>
                       <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Status</th>
+                        <th scope="col">status</th>
                         <th scope="col">Buyer</th>
                         <th scope="col">Date</th>
                         <th scope="col">Payment</th>
@@ -59,49 +59,46 @@ const Orders = () => {
                     <tbody>
                       <tr>
                         <th scope="row">{i + 1}</th>
-                        <td>{order.status}</td>
-                        <td>{order.buyer.name}</td>
-                        <td>{moment(order.createdAt).fromNow()}</td>
-                        <td>{order.payment.success ? "Success" : "Failed"}</td>
-                        <td>{order.products.length}</td>
+                        <td>{order?.status}</td>
+                        <td>{order?.buyer?.name}</td>
+                        <td>{moment(order?.createdAt).fromNow()}</td>
+                        <td>
+                          {order?.payment?.success ? "Success" : "Failed"}
+                        </td>
+                        <td>{order?.products?.length}</td>
                       </tr>
                     </tbody>
                   </table>
                   <div className="container">
-                    {order.products.map((product) => (
-                      <div className="card mb-2" key={product._id}>
-                        <div className="row g-0">
-                          <div className="col-md-4">
-                            <img
-                              src={`${process.env.REACT_APP_API}api/v1/product/product-photo/${product._id}`}
-                              className="card-img-top mx-auto rounded pointer"
-                              style={{ maxWidth: "7rem", maxHeight: "7rem" }}
-                              alt={product.name}
-                              onClick={() =>
-                                navigate(`/product/${product.slug}`)
-                              }
-                            />
-                          </div>
-                          <div className="col-md-8">
-                            <div className="card-body">
-                              <h5
-                                className="card-title pointer"
-                                onClick={() =>
-                                  navigate(`/product/${product.slug}`)
-                                }
-                              >
-                                {product.name}
-                              </h5>
-                              <p className="card-text">
-                                Price: {product.price}
-                              </p>
-                            </div>
+                    {order?.products?.map((product) => (
+                      <div
+                        className="row card p-3 mb-2 flex-row"
+                        key={product._id}
+                      >
+                        <div className="col-md-4">
+                          <img
+                            src={`${process.env.REACT_APP_API}api/v1/product/product-photo/${product._id}`}
+                            className="card-img-top mx-auto rounded pointer"
+                            style={{ width: "7rem", height: "7rem" }}
+                            alt={product.name}
+                            onClick={() => navigate(`/product/${product.slug}`)}
+                          />
+                        </div>
+                        <div className="col-md-4 flex-row">
+                          <h5
+                            className="pointer"
+                            onClick={() => navigate(`/product/${product.slug}`)}
+                          >
+                            {product.name}
+                          </h5>
+                          <div className="col-md-4 flex-row">
+                            <h5>Price : {product.price}</h5>
                           </div>
                         </div>
                       </div>
                     ))}
                   </div>
-                </div>
+                </>
               ))
             ) : (
               <div className="d-flex justify-content-center">
