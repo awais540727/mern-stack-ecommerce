@@ -97,12 +97,9 @@ const UpdateProduct = () => {
       const { data } = await axios.delete(
         `${process.env.REACT_APP_API}api/v1/product/delete-product/${id}`
       );
-      //   console.log(data);
       if (data?.success) {
         toast.success(data.message);
-        setTimeout(() => {
-          navigate("/dashboard/admin/products");
-        }, 2000);
+        navigate("/dashboard/admin/products");
       }
     } catch (error) {
       console.log(error);
@@ -235,7 +232,7 @@ const UpdateProduct = () => {
               </div>
             </form>
             <div className="flex-end">
-              <button className="btn btn-danger" onClick={handleDelete}>
+              <button className="btn btn-danger" onClick={() => handleDelete}>
                 Delete Product
               </button>
             </div>
