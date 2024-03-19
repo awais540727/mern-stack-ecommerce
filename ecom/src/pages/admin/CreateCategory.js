@@ -118,7 +118,7 @@ const CreateCategory = () => {
                         <td key={category._id}>{category.name}</td>
                         <td>
                           <button
-                            className="btn btn-primary ms-2"
+                            className="btn btn-primary float-start"
                             onClick={() => {
                               setVisible(true);
                               setUpdatedName(category.name);
@@ -128,7 +128,7 @@ const CreateCategory = () => {
                             Edit
                           </button>
                           <button
-                            className="btn btn-danger ms-2"
+                            className="btn btn-danger float-end"
                             onClick={() => handleDelete(category._id)}
                           >
                             Delete
