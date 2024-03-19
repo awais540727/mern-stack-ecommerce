@@ -52,86 +52,65 @@ const AdminOrders = () => {
     }
   };
   return (
-    <Layout title={"all users"}>
+    <Layout title={"all orders"}>
       <div className="container-fluid m-3 p-3">
         <div className="row">
           <div className="col-lg-3 col-md-3">
             <AdminMenu />
           </div>
           <div className="col-lg-9 col-md-9">
-            <h2>All Orders</h2>
-
+            <h2 className="mb-4">All Orders</h2>
             {!loading ? (
               orders?.map((order, i) => (
-                <>
-                  <table className="table shadow w-80">
-                    <thead key={order._id}>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">status</th>
-                        <th scope="col">Buyer</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">Payment</th>
-                        <th scope="col">Quantity</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">{i + 1}</th>
-                        <td>
-                          <Select
-                            bordered={false}
-                            onChange={(value) =>
-                              handleChangeStatus(order._id, value)
-                            }
-                            defaultValue={order.status}
-                          >
-                            {status?.map((value, i) => (
-                              <Option key={i} value={value}>
-                                {value}
-                              </Option>
-                            ))}
-                          </Select>
-                        </td>
-                        <td>{order?.buyer?.name}</td>
-                        <td>{moment(order?.createdAt).fromNow()}</td>
-                        <td>
-                          {order?.payment?.success ? "Success" : "Failed"}
-                        </td>
-                        <td>{order?.products?.length}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <div className="container">
-                    {/* {order?.products?.map((product) => (
-                      <div
-                        className="row card p-3 mb-2 flex-row"
-                        key={product._id}
-                      >
-                        <div className="col-md-4">
-                          <img
-                            src={`${process.env.REACT_APP_API}api/v1/product/product-photo/${product._id}`}
-                            className="card-img-top mx-auto rounded pointer"
-                            style={{ width: "7rem", height: "7rem" }}
-                            alt={product.name}
-                            onClick={() => navigate(`/product/${product.slug}`)}
-                          />
-                        </div>
-                        <div className="col-md-4 flex-row">
-                          <h5
-                            className="pointer"
-                            onClick={() => navigate(`/product/${product.slug}`)}
-                          >
-                            {product.name}
-                          </h5>
-                          <div className="col-md-4 flex-row">
-                            <h5>Price : {product.price}</h5>
-                          </div>
-                        </div>
-                      </div>
-                    ))} */}
+                <div key={order._id} className="mb-4">
+                  <div className="card shadow-sm">
+                    <div className="card-header bg-primary text-white">
+                      Order #{i + 1}
+                    </div>
+                    <div className="card-body">
+                      <table className="table table-striped">
+                        <thead>
+                          <tr>
+                            <th scope="col">Status</th>
+                            <th scope="col">Buyer</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Payment</th>
+                            <th scope="col">Quantity</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <Select
+                                bordered={false}
+                                onChange={(value) =>
+                                  handleChangeStatus(order._id, value)
+                                }
+                                defaultValue={order.status}
+                              >
+                                {status?.map((value, i) => (
+                                  <Option key={i} value={value}>
+                                    {value}
+                                  </Option>
+                                ))}
+                              </Select>
+                            </td>
+                            <td>{order?.buyer?.name}</td>
+                            <td>{moment(order?.createdAt).fromNow()}</td>
+                            <td>
+                              {order?.payment?.success ? (
+                                <span className="text-success">Success</span>
+                              ) : (
+                                <span className="text-danger">Failed</span>
+                              )}
+                            </td>
+                            <td>{order?.products?.length}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
-                </>
+                </div>
               ))
             ) : (
               <div className="d-flex justify-content-center">
