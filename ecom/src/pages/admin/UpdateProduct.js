@@ -11,7 +11,7 @@ const UpdateProduct = () => {
   const navigate = useNavigate();
   const params = useParams();
   const [categories, setCategories] = useState([]);
-  const [id, setId] = useState("");
+  const [id, setId] = useState();
   const [category, setCategory] = useState("");
   const [price, setPrice] = useState("");
   const [shipping, setShipping] = useState("");
@@ -84,24 +84,19 @@ const UpdateProduct = () => {
     }
   };
   useEffect(() => {
-      getAllCategory();
+    getAllCategory();
     getSingleProduct();
-      
   }, []);
-//   useEffect(() => {
-//     getSingleProduct();
-//   }, []);
+  //   useEffect(() => {
+  //     getSingleProduct();
+  //   }, []);
   // Delete Product
   const handleDelete = async () => {
     try {
-      let answer = window.prompt(
-        "Are you sure that you want to delete this product?"
-      );
-      if (!answer) return 0;
       const { data } = await axios.delete(
         `${process.env.REACT_APP_API}api/v1/product/delete-product/${id}`
       );
-    //   console.log(data);
+      //   console.log(data);
       if (data?.success) {
         toast.success(data.message);
         setTimeout(() => {
