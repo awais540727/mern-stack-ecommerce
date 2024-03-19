@@ -92,7 +92,8 @@ const UpdateProduct = () => {
   //     getSingleProduct();
   //   }, []);
   // Delete Product
-  const handleDelete = async (id) => {
+  const handleDelete = async () => {
+    console.log(id);
     try {
       const { data } = await axios.delete(
         `${process.env.REACT_APP_API}api/v1/product/delete-product/${id}`
