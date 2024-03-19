@@ -124,7 +124,7 @@ const CreateCategory = () => {
                           <div className="row">
                             <div className="col-sm-6">
                               <button
-                                className="btn btn-primary float-start"
+                                className="btn btn-primary"
                                 onClick={() => {
                                   setVisible(true);
                                   setUpdatedName(category.name);
@@ -136,7 +136,7 @@ const CreateCategory = () => {
                             </div>
                             <div className="col-sm-6">
                               <button
-                                className="btn btn-danger float-end"
+                                className="btn btn-danger"
                                 onClick={() => handleDelete(category._id)}
                               >
                                 Delete
