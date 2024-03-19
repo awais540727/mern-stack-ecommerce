@@ -95,49 +95,47 @@ const CreateCategory = () => {
             <AdminMenu />
           </div>
           <div className="col-lg-9 col-md-9">
-            <h2>Manage category</h2>
-            <div className="p-3 w-50">
+            <h2 className="mb-3">Manage category</h2>
+            <div className="p-md-3 w-100">
               <CategoryForm
                 handleSubmit={handleSubmit}
                 value={name}
                 setValue={setName}
               />
             </div>
-            <div className="w-75">
+            <div className="w-100">
               <table className="table">
                 <thead>
                   <tr>
                     <th scope="col">Name</th>
-                    <th scope="col">Action</th>
+                    <th scope="col">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
                   {category?.map((category) => (
-                    <>
-                      <tr>
-                        <td key={category._id}>{category.name}</td>
-                        <td>
-                          <div className="d-grid gap-2 d-md-table">
-                            <button
-                              className="btn btn-primary mb-2 mb-md-0"
-                              onClick={() => {
-                                setVisible(true);
-                                setUpdatedName(category.name);
-                                setSelected(category);
-                              }}
-                            >
-                              Edit
-                            </button>
-                            <button
-                              className="btn btn-danger"
-                              onClick={() => handleDelete(category._id)}
-                            >
-                              Delete
-                            </button>
-                          </div>
-                        </td>
-                      </tr>
-                    </>
+                    <tr key={category._id}>
+                      <td>{category.name}</td>
+                      <td>
+                        <div className="d-flex justify-content-between">
+                          <button
+                            className="btn btn-primary me-2"
+                            onClick={() => {
+                              setVisible(true);
+                              setUpdatedName(category.name);
+                              setSelected(category);
+                            }}
+                          >
+                            Edit
+                          </button>
+                          <button
+                            className="btn btn-danger"
+                            onClick={() => handleDelete(category._id)}
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
                   ))}
                 </tbody>
               </table>
