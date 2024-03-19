@@ -108,7 +108,11 @@ const CreateCategory = () => {
                 <thead>
                   <tr>
                     <th scope="col">Name</th>
-                    <th scope="col">Action</th>
+                    <th scope="col">
+                      <div className="row">
+                        <div className="col-12 text-center">Action</div>
+                      </div>
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -117,22 +121,28 @@ const CreateCategory = () => {
                       <tr>
                         <td key={category._id}>{category.name}</td>
                         <td>
-                          <button
-                            className="btn btn-primary float-start"
-                            onClick={() => {
-                              setVisible(true);
-                              setUpdatedName(category.name);
-                              setSelected(category);
-                            }}
-                          >
-                            Edit
-                          </button>
-                          <button
-                            className="btn btn-danger float-end"
-                            onClick={() => handleDelete(category._id)}
-                          >
-                            Delete
-                          </button>
+                          <div className="row">
+                            <div className="col-sm-6">
+                              <button
+                                className="btn btn-primary float-start"
+                                onClick={() => {
+                                  setVisible(true);
+                                  setUpdatedName(category.name);
+                                  setSelected(category);
+                                }}
+                              >
+                                Edit
+                              </button>
+                            </div>
+                            <div className="col-sm-6">
+                              <button
+                                className="btn btn-danger float-end"
+                                onClick={() => handleDelete(category._id)}
+                              >
+                                Delete
+                              </button>
+                            </div>
+                          </div>
                         </td>
                       </tr>
                     </>
