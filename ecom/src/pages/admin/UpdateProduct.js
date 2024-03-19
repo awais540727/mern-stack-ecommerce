@@ -70,6 +70,7 @@ const UpdateProduct = () => {
         `${process.env.REACT_APP_API}api/v1/product/update-product/${id}`,
         productData
       );
+      console.log(data);
       if (data?.success) {
         toast.success(data.message);
         setTimeout(() => {
