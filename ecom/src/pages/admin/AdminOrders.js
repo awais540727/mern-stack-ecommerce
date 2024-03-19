@@ -59,7 +59,7 @@ const AdminOrders = () => {
             <AdminMenu />
           </div>
           <div className="col-lg-9 col-md-9">
-            <h2 className="mb-4">All Orders</h2>
+            <h2 className="mb-4 text-center">All Orders</h2>
             {!loading ? (
               orders?.map((order, i) => (
                 <div key={order._id} className="mb-4">
@@ -68,46 +68,48 @@ const AdminOrders = () => {
                       Order #{i + 1}
                     </div>
                     <div className="card-body">
-                      <table className="table table-striped">
-                        <thead>
-                          <tr>
-                            <th scope="col">Status</th>
-                            <th scope="col">Buyer</th>
-                            <th scope="col">Date</th>
-                            <th scope="col">Payment</th>
-                            <th scope="col">Quantity</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>
-                              <Select
-                                bordered={false}
-                                onChange={(value) =>
-                                  handleChangeStatus(order._id, value)
-                                }
-                                defaultValue={order.status}
-                              >
-                                {status?.map((value, i) => (
-                                  <Option key={i} value={value}>
-                                    {value}
-                                  </Option>
-                                ))}
-                              </Select>
-                            </td>
-                            <td>{order?.buyer?.name}</td>
-                            <td>{moment(order?.createdAt).fromNow()}</td>
-                            <td>
-                              {order?.payment?.success ? (
-                                <span className="text-success">Success</span>
-                              ) : (
-                                <span className="text-danger">Failed</span>
-                              )}
-                            </td>
-                            <td>{order?.products?.length}</td>
-                          </tr>
-                        </tbody>
-                      </table>
+                      <div className="table-responsive">
+                        <table className="table table-striped">
+                          <thead>
+                            <tr>
+                              <th scope="col">Status</th>
+                              <th scope="col">Buyer</th>
+                              <th scope="col">Date</th>
+                              <th scope="col">Payment</th>
+                              <th scope="col">Quantity</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>
+                                <Select
+                                  bordered={false}
+                                  onChange={(value) =>
+                                    handleChangeStatus(order._id, value)
+                                  }
+                                  defaultValue={order.status}
+                                >
+                                  {status?.map((value, i) => (
+                                    <Option key={i} value={value}>
+                                      {value}
+                                    </Option>
+                                  ))}
+                                </Select>
+                              </td>
+                              <td>{order?.buyer?.name}</td>
+                              <td>{moment(order?.createdAt).fromNow()}</td>
+                              <td>
+                                {order?.payment?.success ? (
+                                  <span className="text-success">Success</span>
+                                ) : (
+                                  <span className="text-danger">Failed</span>
+                                )}
+                              </td>
+                              <td>{order?.products?.length}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
                     </div>
                   </div>
                 </div>
