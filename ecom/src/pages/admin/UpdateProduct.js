@@ -70,7 +70,6 @@ const UpdateProduct = () => {
         `${process.env.REACT_APP_API}api/v1/product/update-product/${id}`,
         productData
       );
-      console.log(data);
       if (data?.success) {
         toast.success(data.message);
         setTimeout(() => {
@@ -93,14 +92,20 @@ const UpdateProduct = () => {
   //   }, []);
   // Delete Product
   const handleDelete = async () => {
-    console.log(id);
     try {
+      let answer = window.prompt(
+        "Are you sure that you want to delete this product?"
+      );
+      if (!answer) return 0;
       const { data } = await axios.delete(
         `${process.env.REACT_APP_API}api/v1/product/delete-product/${id}`
       );
+      //   console.log(data);
       if (data?.success) {
         toast.success(data.message);
-        navigate("/dashboard/admin/products");
+        setTimeout(() => {
+          navigate("/dashboard/admin/products");
+        }, 2000);
       }
     } catch (error) {
       console.log(error);
