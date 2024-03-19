@@ -108,11 +108,7 @@ const CreateCategory = () => {
                 <thead>
                   <tr>
                     <th scope="col">Name</th>
-                    <th scope="col">
-                      <div className="row">
-                        <div className="col-12 text-center">Action</div>
-                      </div>
-                    </th>
+                    <th scope="col">Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -121,28 +117,22 @@ const CreateCategory = () => {
                       <tr>
                         <td key={category._id}>{category.name}</td>
                         <td>
-                          <div className="row">
-                            <div className="col-sm-6">
-                              <button
-                                className="btn btn-primary"
-                                onClick={() => {
-                                  setVisible(true);
-                                  setUpdatedName(category.name);
-                                  setSelected(category);
-                                }}
-                              >
-                                Edit
-                              </button>
-                            </div>
-                            <div className="col-sm-6">
-                              <button
-                                className="btn btn-danger"
-                                onClick={() => handleDelete(category._id)}
-                              >
-                                Delete
-                              </button>
-                            </div>
-                          </div>
+                          <button
+                            className="btn btn-primary ms-0"
+                            onClick={() => {
+                              setVisible(true);
+                              setUpdatedName(category.name);
+                              setSelected(category);
+                            }}
+                          >
+                            Edit
+                          </button>
+                          <button
+                            className="btn btn-danger me-0"
+                            onClick={() => handleDelete(category._id)}
+                          >
+                            Delete
+                          </button>
                         </td>
                       </tr>
                     </>
