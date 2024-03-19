@@ -11,7 +11,7 @@ const UpdateProduct = () => {
   const navigate = useNavigate();
   const params = useParams();
   const [categories, setCategories] = useState([]);
-  const [id, setId] = useState();
+  const [id, setId] = useState("");
   const [category, setCategory] = useState("");
   const [price, setPrice] = useState("");
   const [shipping, setShipping] = useState("");
